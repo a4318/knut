@@ -18,7 +18,8 @@ import (
 	"fmt"
 	"io"
 	"strings"
-	"unicode/utf8"
+
+	"github.com/mattn/go-runewidth"
 )
 
 // Printer prints directives.
@@ -256,7 +257,7 @@ func (p *Printer) Initialize(directive []Directive) {
 
 func (p *Printer) updatePadding(t *Transaction) {
 	for _, pt := range t.Postings {
-		cr, dr := utf8.RuneCountInString(pt.Account.String()), utf8.RuneCountInString(pt.Other.String())
+		cr, dr := runewidth.StringWidth(pt.Account.String()), runewidth.StringWidth(pt.Other.String())
 		if p.Padding < cr {
 			p.Padding = cr
 		}
@@ -284,7 +285,7 @@ func (p Printer) newline(w io.Writer, count *int) error {
 func (p Printer) rightPad(a *Account) string {
 	var b strings.Builder
 	b.WriteString(a.String())
-	for i := utf8.RuneCountInString(a.String()); i < p.Padding; i++ {
+	for i := runewidth.StringWidth(a.String()); i < p.Padding; i++ {
 		b.WriteRune(' ')
 	}
 	return b.String()

@@ -19,10 +19,10 @@ import (
 	"io"
 	"strings"
 	"unicode"
-	"unicode/utf8"
 
 	"github.com/fatih/color"
 	"github.com/shopspring/decimal"
+	"github.com/mattn/go-runewidth"
 )
 
 // TextRenderer renders a table to text.
@@ -111,9 +111,9 @@ func (r *TextRenderer) renderCell(c cell, l int, w io.Writer) error {
 		case Left:
 			before = t.Indent
 		case Right:
-			before = l - utf8.RuneCountInString(t.Content)
+			before = l - runewidth.StringWidth(t.Content)
 		case Center:
-			before = (l - utf8.RuneCountInString(t.Content)) / 2
+			before = (l - runewidth.StringWidth(t.Content)) / 2
 		}
 		if err := writeSpace(w, before); err != nil {
 			return err
@@ -121,12 +121,12 @@ func (r *TextRenderer) renderCell(c cell, l int, w io.Writer) error {
 		if err := writeString(w, t.Content); err != nil {
 			return err
 		}
-		return writeSpace(w, l-before-utf8.RuneCountInString(t.Content))
+		return writeSpace(w, l-before-runewidth.StringWidth(t.Content))
 
 	case numberCell:
 		var (
 			s      = r.numToString(t.n)
-			before = l - utf8.RuneCountInString(s)
+			before = l - runewidth.StringWidth(s)
 		)
 		if err := writeSpace(w, before); err != nil {
 			return err
@@ -143,7 +143,7 @@ func (r *TextRenderer) renderCell(c cell, l int, w io.Writer) error {
 		if err != nil {
 			return err
 		}
-		return writeSpace(w, l-before-utf8.RuneCountInString(s))
+		return writeSpace(w, l-before-runewidth.StringWidth(s))
 	}
 	return fmt.Errorf("%v is not a valid cell type", c)
 }
@@ -172,11 +172,11 @@ func (r *TextRenderer) minLengthCell(c cell) int {
 		return 0
 	case textCell:
 		if t.Align == Left {
-			return t.Indent + utf8.RuneCountInString(t.Content)
+			return t.Indent + runewidth.StringWidth(t.Content)
 		}
-		return utf8.RuneCountInString(t.Content)
+		return runewidth.StringWidth(t.Content)
 	case numberCell:
-		return utf8.RuneCountInString(r.numToString(t.n))
+		return runewidth.StringWidth(r.numToString(t.n))
 	}
 	return 0
 }

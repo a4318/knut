@@ -4,7 +4,7 @@ include "AAPL.prices"
 * Open Accounts
 
 2019-12-31 open Equity:Equity
-2019-12-31 open Assets:BankAccount
+2019-12-31 open Assets:ソニー銀行
 2019-12-31 open Assets:Portfolio
 
 2019-12-31 open Expenses:Groceries
@@ -17,21 +17,21 @@ include "AAPL.prices"
 * Opening Balances
 
 2019-12-31 "Opening balance"
-Equity:Equity           Assets:BankAccount           10000 CHF
+Equity:Equity           Assets:ソニー銀行           10000 CHF
 
 * 2020-01
 
 2020-01-25 "Salary January 2020"
-Income:Salary           Assets:BankAccount            5000 CHF
+Income:Salary           Assets:ソニー銀行            5000 CHF
 
 2020-01-02 "Rent January"
-Assets:BankAccount      Expenses:Rent                 2000 CHF
+Assets:ソニー銀行      Expenses:Rent                 2000 CHF
 
 2020-01-15 "Groceries"
-Assets:BankAccount      Expenses:Groceries             200 CHF
+Assets:ソニー銀行      Expenses:Groceries             200 CHF
 
 2020-01-05 "Transfer to portfolio"
-Assets:BankAccount      Assets:Portfolio              1000 CHF
+Assets:ソニー銀行      Assets:Portfolio              1000 CHF
 
 2020-01-06 "Currency exchange"
 Equity:Equity           Assets:Portfolio              1001 USD
@@ -45,13 +45,13 @@ Assets:Portfolio        Expenses:Fees                    4 USD
 * 2020-02
 
 2020-02-25 "Salary January 2020"
-Income:Salary           Assets:BankAccount            5000 CHF
+Income:Salary           Assets:ソニー銀行            5000 CHF
 
 2020-02-02 "Rent January"
-Assets:BankAccount      Expenses:Rent                 2000 CHF
+Assets:ソニー銀行      Expenses:Rent                 2000 CHF
 
 2020-02-05 "Groceries"
-Assets:BankAccount      Expenses:Groceries             250 CHF
+Assets:ソニー銀行      Expenses:Groceries             250 CHF
 
 2020-02-25 "Groceries"
-Assets:BankAccount      Expenses:Groceries             423 CHF
+Assets:ソニー銀行      Expenses:Groceries             423 CHF
